@@ -15,6 +15,11 @@ public class ItemCreateCompleteAction extends ActionSupport implements SessionAw
 
 	public String execute() throws SQLException {
 		String result = ERROR;
+
+		if(!session.containsKey("product_id")) {
+			return result;
+		}
+
 		int error = itemInfoDAO.createItem
 				(session.get("product_id").hashCode(), session.get("product_name").toString(),
 				session.get("product_name_kana").toString(), session.get("product_description").toString(),

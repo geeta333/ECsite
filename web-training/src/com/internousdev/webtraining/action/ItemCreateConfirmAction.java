@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.webtraining.dao.ItemInfoDAO;
+import com.internousdev.webtraining.util.CommonUtility;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ItemCreateConfirmAction extends ActionSupport implements SessionAware {
@@ -80,8 +81,9 @@ public class ItemCreateConfirmAction extends ActionSupport implements SessionAwa
 			//選択した画像ファイルをサーバーに保存する
 			String filePath = ServletActionContext.getServletContext().getRealPath("/").concat("images");
 
-			System.out.println("Image Location:"+ filePath);
-			System.out.println("2kiteru");
+			//ファイル名を乱数にする
+			CommonUtility commonUtility = new CommonUtility();
+			userImageFileName = commonUtility.getRamdomValue() + userImageFileName;
 
 			//サーバー上に保存した画像をimageフォルダにコピーする
 			File fileToCreate = new File(filePath,userImageFileName);

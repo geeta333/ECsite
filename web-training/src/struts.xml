@@ -164,6 +164,7 @@
 	<!-- ItemDetailsAction -->
 	<action name="ItemDetailsAction" class="com.internousdev.webtraining.action.ItemDetailsAction" method="execute">
 	<result name="success">itemDetail.jsp</result>
+	<result name="error">error.jsp</result>
 	</action>
 
 	<!-- AddCartAction -->
@@ -174,7 +175,7 @@
 	<!-- GoCartAction -->
 	<action name="GoCartAction" class="com.internousdev.webtraining.action.GoCartAction" method="execute">
 	<result name="success">cartInfo.jsp</result>
-	<result name="error">login.jsp</result>
+	<result name="error" type="redirectAction">GoHomeAction</result>
 	</action>
 
 	<!-- SettlementConfirmAction -->
