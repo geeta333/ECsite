@@ -7,7 +7,7 @@
 	<meta charset="UTF-8" />
 	<title>ホーム</title>
 	<link rel="stylesheet" href="./css/style.css">
-	<meta http-equiv="refresh" content="3;URL=GoHomeAction">
+	<meta http-equiv="refresh" content="1;URL=GoHomeAction">
 </head>
 <body class="all topPage">
 </body>

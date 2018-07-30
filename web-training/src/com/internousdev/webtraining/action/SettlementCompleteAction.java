@@ -28,6 +28,11 @@ public class SettlementCompleteAction extends ActionSupport implements SessionAw
 
 	@SuppressWarnings("unchecked")
 	public String execute() throws SQLException {
+
+		if(!session.containsKey("cartInfoList")) {
+			return ERROR;
+		}
+
 		cartInfoList = (ArrayList<CartInfoDTO>)session.get("cartInfoList");
 
 

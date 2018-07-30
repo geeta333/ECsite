@@ -17,6 +17,11 @@ public class DestinationCompleteAction extends ActionSupport implements SessionA
 		if(!session.containsKey("user_id")) {
 			return ERROR;
 		}
+
+		if(session.containsKey("checked")) {
+			return ERROR;
+		}
+
 		destinationInfoDAO.creaeDestination
 				(session.get("user_id").toString(),
 				session.get("family_name_provisional").toString(), session.get("first_name_provisional").toString(),
@@ -24,6 +29,8 @@ public class DestinationCompleteAction extends ActionSupport implements SessionA
 				session.get("email_provisional").toString(),session.get("tel_number_provisional").toString(),
 				session.get("user_address_provisional").toString());
 		String result = SUCCESS;
+
+		session.remove("checked");
 
 		return result;
 	}

@@ -18,9 +18,9 @@ public class ItemInfoModificationCompleteAction extends ActionSupport implements
 		int error = itemInfoDAO.updateItem
 				(session.get("itemId").hashCode(), session.get("product_id").hashCode(), session.get("product_name").toString(),
 				session.get("product_name_kana").toString(), session.get("product_description").toString(),
-				session.get("category_id").hashCode(),session.get("price").hashCode(),
+				session.get("category_id").hashCode(), session.get("price").hashCode(),
 				session.get("image_file_path").toString(), session.get("image_file_name").toString(),
-				session.get("release_date").toString(), session.get("release_company").toString(), 4);
+				session.get("release_date").toString(), session.get("release_company").toString(), session.get("stock").hashCode());
 		if(error == 0) {
 			result = SUCCESS;
 		}

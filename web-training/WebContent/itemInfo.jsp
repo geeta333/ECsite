@@ -62,12 +62,13 @@
 						</s:elseif>
 					</th>
 					<th><s:property value="price" /><span>円</span></th>
+					<th><s:property value="stock" /><span>個</span></th>
 					<th><s:property value="image_file_name" /></th>
 					<th><s:property value="release_date" /></th>
 					<th><s:property value="release_company" /></th>
 					<th class="center">
 					<s:form action="ItemInfoChangeAction">
-						<input type="hidden" name="itemId" value='<s:property value="id"/>'>
+						<input type="hidden" name="itemId" value='<s:property value="product_id"/>'>
 						<s:submit value="変更"/>
 					</s:form>
 					</th>

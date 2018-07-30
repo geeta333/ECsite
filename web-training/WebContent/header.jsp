@@ -44,7 +44,7 @@
 			<li><a href='<s:url action="GoMyPageAction" />'><input type="button" value="マイページ" class="button"></a></li>
 		</s:if>
 		<s:elseif test='#session.containsKey("administrator")'>
-			<li><a href='<s:url action="GoAdministratorAction" />'><input type="button" value="マイページ" class="button"></a></li>
+			<li><a href='<s:url action="GoAdministratorAction" />'><input type="button" value="管理者画面へ" class="button"></a></li>
 		</s:elseif>
 	</ul>
 </div>

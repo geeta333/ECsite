@@ -83,7 +83,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<ItemInfoDTO> itemInfoDTO = new ArrayList<ItemInfoDTO>();
-		String sql = "select * from product_info where id = ?";
+		String sql = "select * from product_info where product_id = ?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, itemId);
@@ -125,26 +125,28 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
-		String sql = "select * from product_info where id = ?";
+		String sql = "select * from product_info where product_id = ?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, itemId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			resultSet.next();
+			if(resultSet.next()) {
+				itemInfoDTO.setId(resultSet.getInt("id"));
+				itemInfoDTO.setProduct_id(resultSet.getInt("product_id"));
+				itemInfoDTO.setProduct_name(resultSet.getString("product_name"));
+				itemInfoDTO.setProduct_name_kana(resultSet.getString("product_name_kana"));
+				itemInfoDTO.setProduct_description(resultSet.getString("product_description"));
+				itemInfoDTO.setCategory_id(resultSet.getInt("category_id"));
+				itemInfoDTO.setPrice(resultSet.getInt("price"));
+				itemInfoDTO.setImage_file_path(resultSet.getString("image_file_path"));
+				itemInfoDTO.setImage_file_name(resultSet.getString("image_file_name"));
+				itemInfoDTO.setRelease_date(resultSet.getString("release_date"));
+				itemInfoDTO.setRelease_company(resultSet.getString("release_company"));
 
-			itemInfoDTO.setId(resultSet.getInt("id"));
-			itemInfoDTO.setProduct_id(resultSet.getInt("product_id"));
-			itemInfoDTO.setProduct_name(resultSet.getString("product_name"));
-			itemInfoDTO.setProduct_name_kana(resultSet.getString("product_name_kana"));
-			itemInfoDTO.setProduct_description(resultSet.getString("product_description"));
-			itemInfoDTO.setCategory_id(resultSet.getInt("category_id"));
-			itemInfoDTO.setPrice(resultSet.getInt("price"));
-			itemInfoDTO.setImage_file_path(resultSet.getString("image_file_path"));
-			itemInfoDTO.setImage_file_name(resultSet.getString("image_file_name"));
-			itemInfoDTO.setRelease_date(resultSet.getString("release_date"));
-			itemInfoDTO.setRelease_company(resultSet.getString("release_company"));
-
+			} else {
+				itemInfoDTO = null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

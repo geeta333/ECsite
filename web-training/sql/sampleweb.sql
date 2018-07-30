@@ -27,7 +27,7 @@ comment="会員情報テーブル"
 ;
 
 insert into user_info values
-(1,"admin","admin","アドミニストレーター","マネージャー","あどみにすとれーたー","まねーじゃー",0,"gg@gmail.com",0,0,now(),now(),1),
+(1,"admin","admin","アドミニストレーター","マネージャー","あどみにすとれーたー","まねーじゃー",0,"admin@gmail.com",0,0,now(),now(),1),
 (2,"guest","guest","インターノウス","ゲストユーザー","いんたーのうす","げすとゆーざー",0,"guest@gmail.com",0,0,now(),now(),0);
 
 create table product_info(

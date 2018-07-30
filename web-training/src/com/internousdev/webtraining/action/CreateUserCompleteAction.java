@@ -1,11 +1,14 @@
 package com.internousdev.webtraining.action;
 
 import java.sql.SQLException;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.webtraining.dao.UserInfoDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateUserCompleteAction extends ActionSupport {
+public class CreateUserCompleteAction extends ActionSupport implements SessionAware {
 
 	private String family_name;
 	private String first_name;
@@ -15,6 +18,7 @@ public class CreateUserCompleteAction extends ActionSupport {
 	private String email;
 	private String user_id;
 	private String password;
+	private Map<String, Object> session;
 
 	private UserInfoDAO userInfoDAO = new UserInfoDAO();
 
@@ -25,6 +29,11 @@ public class CreateUserCompleteAction extends ActionSupport {
 				family_name, first_name,
 				family_name_kana,first_name_kana,
 				gender, email);
+
+		session.put("id", user_id);
+		session.put("user_id", user_id);
+		session.put("family_name", family_name);
+		session.put("first_name", first_name);
 
 		return SUCCESS;
 	}
@@ -60,6 +69,11 @@ public class CreateUserCompleteAction extends ActionSupport {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
 }

@@ -13,11 +13,11 @@
 	<jsp:include page="header.jsp" />
 	<div id="main" class="clear">
 		<div id="top">
-			<h1>カート画面</h1>
+			<h1>購入履歴画面</h1>
 		</div>
 		<div class="marginLeft">
 			<s:if test="purchaseHistoryInfoInfoList == null">
-				<h3>商品情報はありません。</h3>
+				<h3>商品の購入履歴の情報はありません。</h3>
 			</s:if>
 			<s:else>
 				<s:if test="true">

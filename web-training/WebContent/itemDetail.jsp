@@ -20,6 +20,7 @@
 			<s:if test="message">
 				<h2>ログインしてください。</h2>
 			</s:if>
+			<s:if test="errorMessage == null">
 			<s:form action="AddCartAction">
 				<img class="itemDetailImage" src='<s:property value="#session.image_file_path"/>/<s:property value="#session.image_file_name"/>'>
 				<table border="1">
@@ -62,6 +63,10 @@
 				</table>
 				<s:submit value="カートに追加" class="button"/>
 			</s:form>
+			</s:if>
+			<s:else>
+				<s:property value="%{errorMessage}"/>
+			</s:else>
 			</div>
 		</div>
 	</div>

@@ -37,6 +37,7 @@ public class CreateUserConfirmAction extends ActionSupport {
 			setErrorMassage("未入力の項目があります。");
 			result = ERROR;
 		}
+
 		return result;
 	}
 

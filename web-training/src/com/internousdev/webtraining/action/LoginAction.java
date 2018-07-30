@@ -59,13 +59,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 				count = cartInfoDAO.linkToLoginId(session.get("tempUserId").toString(), user_id);
 
-				System.out.println("1kiteru");
-
 				if(count > 0 && session.containsKey("settlementFlg")) {
 					destinationInfoList = destinationInfoDAO.getDestinationInfo(user_id);
 					session.put("destinationInfoList", destinationInfoList);
-
-					System.out.println("2kiteru");
 
 					result = "settlement";
 				}

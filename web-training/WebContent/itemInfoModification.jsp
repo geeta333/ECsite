@@ -47,6 +47,10 @@
 					<td><input type="number" name="price" value='<s:property value="price"/>' class="txt" placeholder='<s:property value="price"/>' autocomplete="off" min="1" max="100000000" /></td>
 				</tr>
 				<tr>
+					<th>在庫</th>
+					<td><input type="number" name="stock" value='<s:property value="stock"/>' class="txt" placeholder='<s:property value="stock"/>' autocomplete="off" min="1" max="1000" /></td>
+				</tr>
+				<tr>
 					<th>イメージファイルパス</th>
 					<td><input type="text" name="image_file_path" class="txt" value='<s:property value="image_file_path"/>' placeholder='<s:property value="image_file_path"/>' autocomplete="off" /></td>
 				</tr>

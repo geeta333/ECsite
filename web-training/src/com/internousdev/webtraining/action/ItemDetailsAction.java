@@ -14,6 +14,7 @@ public class ItemDetailsAction extends ActionSupport implements SessionAware {
 	public Map<String, Object> session;
 	private ItemInfoDAO itemInfoDAO = new ItemInfoDAO();
 	private ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
+	private String errorMessage;
 
 	public String execute() throws SQLException {
 
@@ -21,19 +22,24 @@ public class ItemDetailsAction extends ActionSupport implements SessionAware {
 
 		itemInfoDTO = itemInfoDAO.getItemDatail(itemId);
 
-		int point = itemInfoDTO.getRelease_date().lastIndexOf(" ");
-		String date = itemInfoDTO.getRelease_date().substring(0, point);
+		if(itemInfoDTO != null) {
+			int point = itemInfoDTO.getRelease_date().lastIndexOf(" ");
+			String date = itemInfoDTO.getRelease_date().substring(0, point);
 
-		session.put("product_id", itemInfoDTO.getProduct_id());
-		session.put("product_name", itemInfoDTO.getProduct_name());
-		session.put("product_name_kana", itemInfoDTO.getProduct_name_kana());
-		session.put("product_description", itemInfoDTO.getProduct_description());
-		session.put("category_id", itemInfoDTO.getCategory_id());
-		session.put("price", itemInfoDTO.getPrice());
-		session.put("image_file_path", itemInfoDTO.getImage_file_path());
-		session.put("image_file_name", itemInfoDTO.getImage_file_name());
-		session.put("release_date", date);
-		session.put("release_company", itemInfoDTO.getRelease_company());
+			session.put("product_id", itemInfoDTO.getProduct_id());
+			session.put("product_name", itemInfoDTO.getProduct_name());
+			session.put("product_name_kana", itemInfoDTO.getProduct_name_kana());
+			session.put("product_description", itemInfoDTO.getProduct_description());
+			session.put("category_id", itemInfoDTO.getCategory_id());
+			session.put("price", itemInfoDTO.getPrice());
+			session.put("image_file_path", itemInfoDTO.getImage_file_path());
+			session.put("image_file_name", itemInfoDTO.getImage_file_name());
+			session.put("release_date", date);
+			session.put("release_company", itemInfoDTO.getRelease_company());
+
+		} else {
+			errorMessage = "商品が存在しません。";
+		}
 
 		return SUCCESS;
 	}
@@ -45,6 +51,10 @@ public class ItemDetailsAction extends ActionSupport implements SessionAware {
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }

@@ -40,6 +40,9 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 			setErrorMassage("未入力の項目があります。");
 			result = ERROR;
 		}
+
+		session.put("checked", 1);
+
 		return result;
 	}
 

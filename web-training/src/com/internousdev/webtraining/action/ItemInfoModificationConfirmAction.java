@@ -24,6 +24,7 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 	private String product_description;
 	private int category_id;
 	private int price;
+	private int stock;
 	private String image_file_path;
 	private String image_file_name;
 	private String release_date;
@@ -43,6 +44,7 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 			&& !(product_description.equals(""))
 			&& !(category_id == 0)
 			&& !(price == 0)
+			&& !(stock == 0)
 			&& !(image_file_path.equals(""))
 			&& !(image_file_name.equals(""))
 			&& !(release_date.equals(""))
@@ -53,6 +55,7 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 			session.put("product_description", product_description);
 			session.put("category_id", category_id);
 			session.put("price", price);
+			session.put("stock", stock);
 			session.put("image_file_path", image_file_path);
 			session.put("image_file_name", image_file_name);
 			session.put("release_date", release_date);
@@ -194,5 +197,13 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 
 	public void setErrorMassage(String errorMassage) {
 		this.errorMassage = errorMassage;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 }

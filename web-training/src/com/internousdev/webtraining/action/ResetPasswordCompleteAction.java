@@ -16,7 +16,7 @@ public class ResetPasswordCompleteAction extends ActionSupport implements Sessio
 	private UserInfoDAO userInfoDAO = new UserInfoDAO();
 
 	public String execute() throws SQLException {
-		if(session.containsKey("user_id_reset")) {
+		if(!session.containsKey("user_id_reset")) {
 			return ERROR;
 		}
 		userInfoDAO.resetPassword(session.get("user_id_reset").toString(), session.get("newPassword_reset").toString());

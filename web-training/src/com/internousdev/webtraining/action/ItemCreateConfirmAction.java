@@ -42,9 +42,6 @@ public class ItemCreateConfirmAction extends ActionSupport implements SessionAwa
 	public String execute() throws SQLException {
 		String result = SUCCESS;
 
-		System.out.println("1kiteru");
-		System.out.println(userImageFileName);
-
 		if(itemInfoDAO.productIdCheck(product_id)) {
 			setProductIdCheckError("既に同じIDが存在します");
 			result = ERROR;

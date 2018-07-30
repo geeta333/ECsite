@@ -9,6 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.webtraining.dao.CartInfoDAO;
 import com.internousdev.webtraining.dto.CartInfoDTO;
+import com.internousdev.webtraining.util.CommonUtility;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class GoCartAction extends ActionSupport implements SessionAware  {
@@ -25,7 +26,8 @@ public class GoCartAction extends ActionSupport implements SessionAware  {
 		String user_id = null;
 
 		if(!session.containsKey("user_id") && !session.containsKey("tempUserId")) {
-			return ERROR;
+			CommonUtility commonUtility = new CommonUtility();
+			session.put("tempUserId", commonUtility.getRamdomValue());
 		}
 
 		if(session.containsKey("user_id")) {

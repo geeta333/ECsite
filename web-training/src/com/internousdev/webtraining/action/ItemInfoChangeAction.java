@@ -12,27 +12,33 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ItemInfoChangeAction extends ActionSupport implements SessionAware {
 	private int itemId;
-	public Map<String, Object> session;
+	private Map<String, Object> session;
 	private ItemInfoDAO itemInfoDAO = new ItemInfoDAO();
 	private ArrayList<ItemInfoDTO> itemInfoList = new ArrayList<ItemInfoDTO>();
 	private String deleteFlg;
 	private String message;
 
 	public String execute() throws SQLException {
+
+		String result = ERROR;
+
 		if (!(itemId == 0)) {
 			session.put("itemId", itemId);
 		}
 		if(!session.containsKey("user_id")) {
-			return ERROR;
+			return result;
 		}
+
+		result = SUCCESS;
 
 		if(deleteFlg == null) {
 			itemInfoList = itemInfoDAO.getSingleItemInfo(itemId);
 		} else if(deleteFlg.equals("1")) {
 			delete();
+			result = "admin";
 		}
 
-		String result = SUCCESS;
+
 		return result;
 	}
 
