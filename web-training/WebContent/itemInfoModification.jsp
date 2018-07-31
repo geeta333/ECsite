@@ -23,10 +23,6 @@
 			<s:form action="ItemInfoModificationConfirmAction">
 			<s:iterator value="itemInfoList">
 				<tr>
-					<th>製品ID</th>
-					<td><input type="number" name="product_id" value='<s:property value="product_id"/>' class="txt" placeholder='<s:property value="product_id"/>'  autocomplete="off" /></td>
-				</tr>
-				<tr>
 					<th>商品名</th>
 					<td><input type="text" name="product_name" class="txt" value='<s:property value="product_name"/>' placeholder='<s:property value="product_name"/>' autocomplete="off" /></td>
 				</tr>

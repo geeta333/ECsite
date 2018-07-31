@@ -14,7 +14,7 @@ public class Pagination {
 		//レコードのスタート位置
 		paginationDTO.setStartRecordNo((currentPageNo - 1) * pageSize);
 		// 終了レコード番号
-		paginationDTO.setEndRecordNo((currentPageNo + 1) * pageSize);
+		paginationDTO.setEndRecordNo(paginationDTO.getStartRecordNo() + (pageSize - 1));
 
 		//前のページが存在するか？
 		if((paginationDTO.getStartRecordNo() - 1) <= 0) {
@@ -25,7 +25,7 @@ public class Pagination {
 		}
 
 		//次のページが存在するか？
-		if(paginationDTO.getEndRecordNo() + pageSize > totalRecordNum) {
+		if(paginationDTO.getEndRecordNo() + 1 > totalRecordNum) {
 			paginationDTO.setNextPage(false);
 		}else {
 			paginationDTO.setNextPage(true);

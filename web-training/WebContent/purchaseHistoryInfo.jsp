@@ -25,7 +25,7 @@
 					<s:property value="%{message}" />
 				</s:if>
 			<s:form action="GoPurchaseHistoryInfoAction.action">
-			<table border="1" class="ShowData">
+			<table border="1" class="ShowData marginBottom">
 				<tr>
 					<th>商品名</th>
 					<th>ふりがな</th>

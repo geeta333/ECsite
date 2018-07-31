@@ -18,7 +18,7 @@ public class DestinationCompleteAction extends ActionSupport implements SessionA
 			return ERROR;
 		}
 
-		if(session.containsKey("checked")) {
+		if(!session.containsKey("checked")) {
 			return ERROR;
 		}
 

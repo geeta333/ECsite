@@ -35,7 +35,7 @@ public class AddCartAction extends ActionSupport implements SessionAware  {
 		}
 
 		cartInfoDAO.addCartItem
-			(user_id, tempUserId, session.get("product_id").hashCode(),
+			(user_id, tempUserId, session.get("id").hashCode(),
 			product_count, session.get("price").hashCode());
 
 		return SUCCESS;

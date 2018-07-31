@@ -34,9 +34,16 @@ public class ItemListAction extends ActionSupport implements SessionAware  {
 				session.put("category_id", category_id);
 			}
 
+			if(keywords == null || keywords == "") {
+				keywords = " ";
+			}
+
 			int totalRecordNum = itemInfoDAO.getItemNumKeyword(category_id, keywords.replaceAll("　", " ").split(" "));
+
 			PaginationDTO paginationDTO = pagination.initialize(totalRecordNum, pageSize, pageNo);
+
 			itemInfoList = itemInfoDAO.getItemListRetrieval(paginationDTO.getStartRecordNo(), pageSize, category_id, keywords.replaceAll("　", " ").split(" "));
+
 			session.put("itemInfoList", itemInfoList);
 
 			session.put("totalPageNum", paginationDTO.getTotalPageNum());

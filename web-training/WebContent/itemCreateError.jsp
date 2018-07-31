@@ -13,7 +13,7 @@
 	<jsp:include page="header.jsp" />
 	<div id="main" class="clear">
 		<div id="top">
-			<h2>商品登録に失敗しました。発売日を確認してください。</h2>
+			<h2>商品登録に失敗しました。</h2>
 		</div>
 		<div  class="marginTop">
 			<p>管理者画面へ戻る場合は<a href='<s:url action="GoAdministratorAction" />'>こちら</a></p>

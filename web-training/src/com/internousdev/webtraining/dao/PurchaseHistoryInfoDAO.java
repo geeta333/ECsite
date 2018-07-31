@@ -45,7 +45,7 @@ public class PurchaseHistoryInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<PurchaseHistoryInfoDTO> purchaseHistoryInfoDTO = new ArrayList<PurchaseHistoryInfoDTO>();
-		String sql = "select * from purchase_history_info phi left join product_info pi on phi.product_id = pi.product_id where user_id = ? order by phi.regist_date DESC";
+		String sql = "select * from purchase_history_info phi left join product_info pi on phi.product_id = pi.id where user_id = ? order by phi.regist_date DESC";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user_id);

@@ -9,14 +9,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.webtraining.dao.ItemInfoDAO;
 import com.internousdev.webtraining.util.CommonUtility;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ItemCreateConfirmAction extends ActionSupport implements SessionAware {
 
 	private int id;
-	private int product_id;
 	private String product_name;
 	private String product_name_kana;
 	private String product_description;
@@ -37,15 +35,8 @@ public class ItemCreateConfirmAction extends ActionSupport implements SessionAwa
 	private String userImageContentType;
 	private String userImageFileName;
 
-	private ItemInfoDAO itemInfoDAO = new ItemInfoDAO();
-
 	public String execute() throws SQLException {
 		String result = SUCCESS;
-
-		if(itemInfoDAO.productIdCheck(product_id)) {
-			setProductIdCheckError("既に同じIDが存在します");
-			result = ERROR;
-		}
 
 		if(userImage != null){
 			setImageFilePathError(null);
@@ -53,15 +44,13 @@ public class ItemCreateConfirmAction extends ActionSupport implements SessionAwa
 			setImageFilePathError("画像ファイルを選んでください");
 		}
 
-		if(!(product_id == 0)
-			&& !(product_name.equals(""))
+		if(!(product_name.equals(""))
 			&& !(product_name_kana.equals(""))
 			&& !(product_description.equals(""))
 			&& !(category_id == 0)
 			&& !(price == 0)
 			&& !(release_date.equals(""))
 			&& !(release_company.equals(""))) {
-			session.put("product_id", product_id);
 			session.put("product_name", product_name);
 			session.put("product_name_kana", product_name_kana);
 			session.put("product_description", product_description);
@@ -103,14 +92,6 @@ public class ItemCreateConfirmAction extends ActionSupport implements SessionAwa
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
 	}
 
 	public String getProduct_name() {

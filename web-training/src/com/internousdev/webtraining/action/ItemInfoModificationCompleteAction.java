@@ -16,7 +16,7 @@ public class ItemInfoModificationCompleteAction extends ActionSupport implements
 	public String execute() throws SQLException {
 		String result = ERROR;
 		int error = itemInfoDAO.updateItem
-				(session.get("itemId").hashCode(), session.get("product_id").hashCode(), session.get("product_name").toString(),
+				(session.get("itemId").hashCode(), session.get("product_name").toString(),
 				session.get("product_name_kana").toString(), session.get("product_description").toString(),
 				session.get("category_id").hashCode(), session.get("price").hashCode(),
 				session.get("image_file_path").toString(), session.get("image_file_name").toString(),

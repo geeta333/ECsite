@@ -19,9 +19,6 @@
 			<s:if test="errorMassage != ''">
 				<p><s:property value="errorMassage" escape="false" /></p>
 			</s:if>
-			<s:if test="productIdCheckError != null">
-				<p><s:property value="productIdCheckError"/></p>
-			</s:if>
 			<s:if test="imageFilePathError != null">
 				<p><s:property value="imageFilePathError"/></p>
 			</s:if>
@@ -29,10 +26,6 @@
 		<div>
 			<table class="verticalTable">
 			<s:form action="ItemCreateConfirmAction" enctype="multipart/form-data" method="post">
-				<tr>
-					<th>製品ID</th>
-					<td><input type="number" name="product_id" value="" class="txt" placeholder="製品ID" autocomplete="off" min="1" max="2147483647" /></td>
-				</tr>
 				<tr>
 					<th>商品名</th>
 					<td><s:textfield name="product_name" class="txt" placeholder="商品名" autocomplete="off" /></td>

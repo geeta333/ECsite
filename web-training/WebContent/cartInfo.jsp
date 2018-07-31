@@ -42,7 +42,7 @@
 					<th><s:property value="product_name" /></th>
 					<th><s:property value="product_name_kana" /></th>
 					<th>
-						<img class="itemImageSmall" src='<s:property value="image_file_path"/>/<s:property value="image_file_name"/>'>
+						<img class="itemImageSmall" src='<s:property value="image_file_path"/><s:property value="image_file_name"/>'>
 					</th>
 					<th><s:property value="price" /><span>円</span></th>
 					<th><s:property value="release_company" /></th>

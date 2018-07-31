@@ -35,11 +35,11 @@
 				<h3 class="marginTop">商品情報は以下になります。</h3>
 			<table border="1" class="ShowData marginAuto">
 				<tr>
-					<th>製品ID</th>
 					<th>商品名</th>
 					<th>製品詳細</th>
 					<th>カテゴリー名</th>
 					<th>価格</th>
+					<th>在庫</th>
 					<th>イメージファイル名</th>
 					<th>発売日</th>
 					<th>発売会社</th>
@@ -47,7 +47,6 @@
 				</tr>
 				<s:iterator value="itemInfoList">
 				<tr>
-					<th><s:property value="product_id" /></th>
 					<th><s:property value="product_name" /></th>
 					<th><s:property value="product_description" /></th>
 					<th>
@@ -68,7 +67,7 @@
 					<th><s:property value="release_company" /></th>
 					<th class="center">
 					<s:form action="ItemInfoChangeAction">
-						<input type="hidden" name="itemId" value='<s:property value="product_id"/>'>
+						<input type="hidden" name="itemId" value='<s:property value="id"/>'>
 						<s:submit value="変更"/>
 					</s:form>
 					</th>

@@ -2,7 +2,6 @@ package com.internousdev.webtraining.dto;
 
 public class ItemInfoDTO {
 	private int id;
-	private int product_id;
 	private String product_name;
 	private String product_name_kana;
 	private String product_description;
@@ -23,14 +22,6 @@ public class ItemInfoDTO {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
 	}
 
 	public String getProduct_name() {

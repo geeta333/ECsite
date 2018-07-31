@@ -26,7 +26,7 @@ public class ItemDetailsAction extends ActionSupport implements SessionAware {
 			int point = itemInfoDTO.getRelease_date().lastIndexOf(" ");
 			String date = itemInfoDTO.getRelease_date().substring(0, point);
 
-			session.put("product_id", itemInfoDTO.getProduct_id());
+			session.put("id", itemInfoDTO.getId());
 			session.put("product_name", itemInfoDTO.getProduct_name());
 			session.put("product_name_kana", itemInfoDTO.getProduct_name_kana());
 			session.put("product_description", itemInfoDTO.getProduct_description());

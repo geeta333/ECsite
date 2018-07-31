@@ -45,7 +45,7 @@ public class CartInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<CartInfoDTO> cartInfoDTO = new ArrayList<CartInfoDTO>();
-		String sql = "select * from cart_info ci left join product_info pi on ci.product_id = pi.product_id where user_id = ? order by ci.regist_date DESC";
+		String sql = "select * from cart_info ci left join product_info pi on ci.product_id = pi.id where user_id = ? order by ci.regist_date DESC";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user_id);

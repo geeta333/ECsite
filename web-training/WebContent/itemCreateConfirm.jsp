@@ -19,10 +19,6 @@
 		<div>
 			<table class="verticalTable marginTop">
 				<tr>
-					<th>製品ID</th>
-					<td><s:property value="#session.product_id"/></td>
-				</tr>
-				<tr>
 					<th>商品名</th>
 					<td><s:property value="#session.product_name"/></td>
 				</tr>

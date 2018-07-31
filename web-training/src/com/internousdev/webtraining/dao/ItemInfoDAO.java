@@ -21,7 +21,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<ItemInfoDTO> itemInfoDTO = new ArrayList<ItemInfoDTO>();
-		String sql = "select * from product_info";
+		String sql = "select * from product_info where status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -32,7 +32,6 @@ public class ItemInfoDAO {
 				while (resultSet.next()) {
 					ItemInfoDTO dto = new ItemInfoDTO();
 					dto.setId(resultSet.getInt("id"));
-					dto.setProduct_id(resultSet.getInt("product_id"));
 					dto.setProduct_name(resultSet.getString("product_name"));
 					dto.setProduct_name_kana(resultSet.getString("product_name_kana"));
 					dto.setProduct_description(resultSet.getString("product_description"));
@@ -61,7 +60,7 @@ public class ItemInfoDAO {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 
-		String sql = "delete from product_info ";
+		String sql = "update product_info set status = 1";
 		PreparedStatement preparedStatement;
 		int result = 0;
 		try {
@@ -83,7 +82,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<ItemInfoDTO> itemInfoDTO = new ArrayList<ItemInfoDTO>();
-		String sql = "select * from product_info where product_id = ?";
+		String sql = "select * from product_info where id = ? and status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, itemId);
@@ -95,7 +94,6 @@ public class ItemInfoDAO {
 				while (resultSet.next()) {
 					ItemInfoDTO dto = new ItemInfoDTO();
 					dto.setId(resultSet.getInt("id"));
-					dto.setProduct_id(resultSet.getInt("product_id"));
 					dto.setProduct_name(resultSet.getString("product_name"));
 					dto.setProduct_name_kana(resultSet.getString("product_name_kana"));
 					dto.setProduct_description(resultSet.getString("product_description"));
@@ -125,7 +123,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
-		String sql = "select * from product_info where product_id = ?";
+		String sql = "select * from product_info where id = ? and status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, itemId);
@@ -133,7 +131,6 @@ public class ItemInfoDAO {
 
 			if(resultSet.next()) {
 				itemInfoDTO.setId(resultSet.getInt("id"));
-				itemInfoDTO.setProduct_id(resultSet.getInt("product_id"));
 				itemInfoDTO.setProduct_name(resultSet.getString("product_name"));
 				itemInfoDTO.setProduct_name_kana(resultSet.getString("product_name_kana"));
 				itemInfoDTO.setProduct_description(resultSet.getString("product_description"));
@@ -160,7 +157,7 @@ public class ItemInfoDAO {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 
-		String sql = "delete from product_info where id = ?";
+		String sql = "update product_info set status = 1 where id = ?";
 		PreparedStatement preparedStatement;
 		int result = 0;
 		try {
@@ -183,7 +180,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<ItemInfoDTO> itemInfoDTO = new ArrayList<ItemInfoDTO>();
-		String sql = "select * from product_info";
+		String sql = "select * from product_info where status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -194,7 +191,6 @@ public class ItemInfoDAO {
 				while (resultSet.next()) {
 					ItemInfoDTO dto = new ItemInfoDTO();
 					dto.setId(resultSet.getInt("id"));
-					dto.setProduct_id(resultSet.getInt("product_id"));
 					dto.setProduct_name(resultSet.getString("product_name"));
 					dto.setProduct_name_kana(resultSet.getString("product_name_kana"));
 					dto.setProduct_description(resultSet.getString("product_description"));
@@ -224,7 +220,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		PaginationDTO dto = new PaginationDTO();
-		String sql = "select count(*) from product_info";
+		String sql = "select count(*) from product_info where status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -251,7 +247,7 @@ public class ItemInfoDAO {
 		if (category_id != 1) {
 			for(String keyword : keywords) {
 				if(initializeFlag) {
-					sql += "(category_id = " + category_id + " and (product_name like '%" + keyword + "%' or product_name_kana like '%" + keyword + "%')";
+					sql += "category_id = " + category_id + " and (product_name like '%" + keyword + "%' or product_name_kana like '%" + keyword + "%')";
 					initializeFlag = false;
 				} else {
 					sql += " and (product_name like '%" + keyword + "%' or product_name_kana like '%" + keyword + "%')";
@@ -267,6 +263,7 @@ public class ItemInfoDAO {
 				}
 			}
 		}
+		sql += " and status != 1";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -289,7 +286,7 @@ public class ItemInfoDAO {
 		Connection connection = dbConnector.getConnection();
 
 		ArrayList<ItemInfoDTO> itemInfoDTO = new ArrayList<ItemInfoDTO>();
-		String sql = "select * from product_info limit ?, ?";
+		String sql = "select * from product_info where status != 1 limit ?, ?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, startRecordNo);
@@ -299,7 +296,6 @@ public class ItemInfoDAO {
 			while (resultSet.next()) {
 				ItemInfoDTO dto = new ItemInfoDTO();
 				dto.setId(resultSet.getInt("id"));
-				dto.setProduct_id(resultSet.getInt("product_id"));
 				dto.setProduct_name(resultSet.getString("product_name"));
 				dto.setProduct_name_kana(resultSet.getString("product_name_kana"));
 				dto.setProduct_description(resultSet.getString("product_description"));
@@ -349,7 +345,7 @@ public class ItemInfoDAO {
 					sql += " and (product_name like '%" + keyword + "%' or product_name_kana like '%" + keyword + "%')";
 				}
 			}
-			sql += " limit " + startRecordNo + ", " + pageSize;
+			sql += "and status != 1 limit " + startRecordNo + ", " + pageSize;
 		}
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -358,7 +354,6 @@ public class ItemInfoDAO {
 			while (resultSet.next()) {
 				ItemInfoDTO dto = new ItemInfoDTO();
 				dto.setId(resultSet.getInt("id"));
-				dto.setProduct_id(resultSet.getInt("product_id"));
 				dto.setProduct_name(resultSet.getString("product_name"));
 				dto.setProduct_name_kana(resultSet.getString("product_name_kana"));
 				dto.setProduct_description(resultSet.getString("product_description"));
@@ -379,7 +374,7 @@ public class ItemInfoDAO {
 		return itemInfoDTO;
 	}
 
-	public int createItem( int product_id, String product_name,
+	public int createItem(String product_name,
 			String product_name_kana, String product_description,
 			int category_id, int price,
 			String image_file_path, String image_file_name,
@@ -390,29 +385,28 @@ public class ItemInfoDAO {
 
 
 		String sql = "insert into product_info "
-				+ "(product_id, product_name, product_name_kana, "
+				+ "(product_name, product_name_kana, "
 				+ "product_description, category_id, price, image_file_path, "
 				+ "image_file_name, release_date, release_company, "
 				+ "status, regist_date, update_date) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		int error = 0;
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, product_id);
-			preparedStatement.setString(2, product_name);
-			preparedStatement.setString(3, product_name_kana);
-			preparedStatement.setString(4, product_description);
-			preparedStatement.setInt(5, category_id);
-			preparedStatement.setInt(6, price);
-			preparedStatement.setString(7, image_file_path);
-			preparedStatement.setString(8, image_file_name);
-			preparedStatement.setString(9, release_date);
-			preparedStatement.setString(10, release_company);
-			preparedStatement.setInt(11, 0);
+			preparedStatement.setString(1, product_name);
+			preparedStatement.setString(2, product_name_kana);
+			preparedStatement.setString(3, product_description);
+			preparedStatement.setInt(4, category_id);
+			preparedStatement.setInt(5, price);
+			preparedStatement.setString(6, image_file_path);
+			preparedStatement.setString(7, image_file_name);
+			preparedStatement.setString(8, release_date);
+			preparedStatement.setString(9, release_company);
+			preparedStatement.setInt(10, 0);
+			preparedStatement.setString(11, dateUtil.getDate());
 			preparedStatement.setString(12, dateUtil.getDate());
-			preparedStatement.setString(13, dateUtil.getDate());
 
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -424,7 +418,7 @@ public class ItemInfoDAO {
 		return error;
 	}
 
-	public int updateItem(int id, int product_id, String product_name,
+	public int updateItem(int id, String product_name,
 			String product_name_kana, String product_description,
 			int category_id, int price,
 			String image_file_path, String image_file_name,
@@ -435,7 +429,7 @@ public class ItemInfoDAO {
 
 
 		String sql = "update product_info set "
-				+ "product_id = ?, product_name = ?, product_name_kana = ?, "
+				+ "product_name = ?, product_name_kana = ?, "
 				+ "product_description = ?, category_id = ?, price = ?, "
 				+ "image_file_path = ?, image_file_name = ?, release_date = ?, "
 				+ "release_company = ?, stock = ?, update_date = ? where id = ?";
@@ -444,19 +438,18 @@ public class ItemInfoDAO {
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, product_id);
-			preparedStatement.setString(2, product_name);
-			preparedStatement.setString(3, product_name_kana);
-			preparedStatement.setString(4, product_description);
-			preparedStatement.setInt(5, category_id);
-			preparedStatement.setInt(6, price);
-			preparedStatement.setString(7, image_file_path);
-			preparedStatement.setString(8, image_file_name);
-			preparedStatement.setString(9, release_date);
-			preparedStatement.setString(10, release_company);
-			preparedStatement.setInt(11, stock);
-			preparedStatement.setString(12, dateUtil.getDate());
-			preparedStatement.setInt(13, id);
+			preparedStatement.setString(1, product_name);
+			preparedStatement.setString(2, product_name_kana);
+			preparedStatement.setString(3, product_description);
+			preparedStatement.setInt(4, category_id);
+			preparedStatement.setInt(5, price);
+			preparedStatement.setString(6, image_file_path);
+			preparedStatement.setString(7, image_file_name);
+			preparedStatement.setString(8, release_date);
+			preparedStatement.setString(9, release_company);
+			preparedStatement.setInt(10, stock);
+			preparedStatement.setString(11, dateUtil.getDate());
+			preparedStatement.setInt(12, id);
 
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
@@ -468,20 +461,20 @@ public class ItemInfoDAO {
 		return error;
 	}
 
-	public int updateItemStock(int product_id, int stock) throws SQLException {
+	public int updateItemStock(int id, int stock) throws SQLException {
 
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 
 
-		String sql = "update product_info set stock = ? where product_id = ?";
+		String sql = "update product_info set stock = ? where id = ?";
 
 		int error = 0;
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, stock);
-			preparedStatement.setInt(2, product_id);
+			preparedStatement.setInt(2, id);
 
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
@@ -491,34 +484,6 @@ public class ItemInfoDAO {
 			connection.close();
 		}
 		return error;
-	}
-
-	public boolean productIdCheck(int product_id) throws SQLException {
-
-		DBConnector dbConnector = new DBConnector();
-		Connection connection = dbConnector.getConnection();
-
-		boolean hasProductId = true;
-
-		String sql = "select * from product_info where product_id = ?";
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, product_id);
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			if(resultSet.next()) {
-				hasProductId = true;
-			} else {
-				hasProductId =false;
-			}
-
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connection.close();
-		}
-		return hasProductId;
 	}
 
 }

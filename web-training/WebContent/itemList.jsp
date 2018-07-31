@@ -25,7 +25,7 @@
 					<ul>
 						<li>
 							<a href='<s:url action="ItemDetailsAction">
-							<s:param name="itemId" value="%{product_id}"/></s:url>'>
+							<s:param name="itemId" value="%{id}"/></s:url>'>
 							<img class="itemImage" src='<s:property value="image_file_path"/><s:property value="image_file_name"/>'>
 							</a>
 						</li>

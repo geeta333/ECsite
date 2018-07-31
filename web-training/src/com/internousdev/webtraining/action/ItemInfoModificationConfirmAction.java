@@ -18,7 +18,6 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 
 
 	private int id;
-	private int product_id;
 	private String product_name;
 	private String product_name_kana;
 	private String product_description;
@@ -38,8 +37,7 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 	public String execute() throws SQLException {
 		String result = SUCCESS;
 
-		if(!(product_id == 0)
-			&& !(product_name.equals(""))
+		if(!(product_name.equals(""))
 			&& !(product_name_kana.equals(""))
 			&& !(product_description.equals(""))
 			&& !(category_id == 0)
@@ -49,7 +47,6 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 			&& !(image_file_name.equals(""))
 			&& !(release_date.equals(""))
 			&& !(release_company.equals(""))) {
-			session.put("product_id", product_id);
 			session.put("product_name", product_name);
 			session.put("product_name_kana", product_name_kana);
 			session.put("product_description", product_description);
@@ -75,14 +72,6 @@ public class ItemInfoModificationConfirmAction extends ActionSupport implements 
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
 	}
 
 	public String getProduct_name() {
